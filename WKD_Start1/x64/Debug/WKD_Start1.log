@@ -1,0 +1,23 @@
+﻿  Building 'WKD_Start1' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping x64\Debug\WKD_Start1.inf
+  Stamping [Version] section with DriverVer=10/05/2022,16.21.16.784
+  Driver.c
+  WKD_Start1.vcxproj -> C:\NDRR\Projects\WKD_Start\WKD_Start1\x64\Debug\WKD_Start1.sys
+  Done Adding Additional Store
+  Successfully signed: C:\NDRR\Projects\WKD_Start\WKD_Start1\x64\Debug\WKD_Start1.sys
+  
+  Driver is 'Universal'.
+  ........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\NDRR\Projects\WKD_Start\WKD_Start1\x64\Debug\WKD_Start1\wkd_start1.cat
+  Done Adding Additional Store
+  Successfully signed: C:\NDRR\Projects\WKD_Start\WKD_Start1\x64\Debug\WKD_Start1\wkd_start1.cat
+  

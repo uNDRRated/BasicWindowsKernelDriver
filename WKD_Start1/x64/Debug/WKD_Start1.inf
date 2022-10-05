@@ -1,0 +1,80 @@
+;
+; WKD_Start1.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=WKD_Start1.cat
+DriverVer = 10/05/2022,16.21.16.784
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+WKD_Start1_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+WKD_Start1.sys  = 1,,
+;
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%WKD_Start1.DeviceDesc%=WKD_Start1_Device, Root\WKD_Start1 ; TODO: edit hw-id
+
+[WKD_Start1_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+WKD_Start1.sys
+
+;-------------- Service installation
+[WKD_Start1_Device.NT.Services]
+AddService = WKD_Start1,%SPSVCINST_ASSOCSERVICE%, WKD_Start1_Service_Inst
+
+; -------------- WKD_Start1 driver install sections
+[WKD_Start1_Service_Inst]
+DisplayName    = %WKD_Start1.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\WKD_Start1.sys
+
+;
+;--- WKD_Start1_Device Coinstaller installation ------
+;
+
+[WKD_Start1_Device.NT.CoInstallers]
+AddReg=WKD_Start1_Device_CoInstaller_AddReg
+CopyFiles=WKD_Start1_Device_CoInstaller_CopyFiles
+
+[WKD_Start1_Device_CoInstaller_AddReg]
+;
+
+
+[WKD_Start1_Device_CoInstaller_CopyFiles]
+;
+
+
+[WKD_Start1_Device.NT.Wdf]
+KmdfService =  WKD_Start1, WKD_Start1_wdfsect
+[WKD_Start1_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "WKD_Start1 Installation Disk"
+WKD_Start1.DeviceDesc = "WKD_Start1 Device"
+WKD_Start1.SVCDESC = "WKD_Start1 Service"
